@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_06_211328) do
+ActiveRecord::Schema.define(version: 2021_07_06_212257) do
+
+  create_table "inventories_history", force: :cascade do |t|
+    t.integer "store_id", null: false
+    t.integer "model_id", null: false
+    t.integer "inventory"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["model_id"], name: "index_inventories_history_on_model_id"
+    t.index ["store_id"], name: "index_inventories_history_on_store_id"
+  end
 
   create_table "models", force: :cascade do |t|
     t.string "name", null: false
@@ -20,4 +30,6 @@ ActiveRecord::Schema.define(version: 2021_07_06_211328) do
     t.string "name", null: false
   end
 
+  add_foreign_key "inventories_history", "models"
+  add_foreign_key "inventories_history", "stores"
 end
