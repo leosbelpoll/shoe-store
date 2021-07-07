@@ -1,0 +1,119 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+  description: API Shoes Models Inventories
+paths:
+  "/api/v1/models":
+    parameters:
+    - name: q
+      in: query
+      description: Search models by name
+      schema:
+        type: string
+    get:
+      summary: List models
+      tags:
+      - Models
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string
+  "/api/v1/models/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    - name: fromDate
+      in: query
+      description: From date
+      example: 01-07-2021
+      schema:
+        type: date
+    - name: toDate
+      in: query
+      description: To date
+      example: 01-08-2021
+      schema:
+        type: date
+    get:
+      summary: Details model
+      tags:
+      - Models
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  inventories:
+                    type: array
+                    items:
+                      properties:
+                        inventory:
+                          type: integer
+                        id:
+                          type: integer
+                        created_at:
+                          type: string
+                          format: date-time
+                        store:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            name:
+                              type: string
+                        model:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            name:
+                              type: string
+                  candle_chart:
+                    type: array
+                    items:
+                      properties:
+                        date:
+                          type: string
+                          format: date-time
+                        low:
+                          type: integer
+                        high:
+                          type: integer
+                        open:
+                          type: integer
+                        close:
+                          type: integer
+                required:
+                - id
+                - name
+                - inventories
+                - candle_chart
+        '404':
+          description: Not found
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3005
