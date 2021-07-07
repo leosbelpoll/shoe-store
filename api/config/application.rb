@@ -42,5 +42,8 @@ module Api
 
     # Inventories less than this value are going to throw a warning
     config.max_range_warning = 5
+
+    # Date format
+    config.default_dates_format = '%d-%m-%Y'
   end
 end
