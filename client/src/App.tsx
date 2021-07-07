@@ -4,6 +4,7 @@ import "react-notifications-component/dist/theme.css";
 import { Layout } from "antd";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Routes } from "./components/Routes";
+import { Header } from "./components/Header";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,18 +17,18 @@ const queryClient = new QueryClient({
 const { Content } = Layout;
 
 function App() {
-
   return (
-      <QueryClientProvider client={queryClient}>
-        <ReactNotification />
-        <Router>
-          <Layout className="layout">
-            <Content style={{ padding: "50px" }}>
-              <Routes />
-            </Content>
-          </Layout>
-        </Router>
-      </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <ReactNotification />
+      <Router>
+        <Header />
+        <Layout className="layout">
+          <Content style={{ padding: "50px" }}>
+            <Routes />
+          </Content>
+        </Layout>
+      </Router>
+    </QueryClientProvider>
   );
 }
 
