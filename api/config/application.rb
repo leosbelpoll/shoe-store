@@ -36,5 +36,11 @@ module Api
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # WebSockets url
+    config.websockets_url = 'ws://localhost:8080/'
+
+    # Inventories less than this value are going to throw a warning
+    config.max_range_warning = 5
   end
 end
