@@ -8,6 +8,7 @@ import { reducer } from "./redux/reducer";
 import { initialState, ReduxContext } from "./redux/store";
 import { Routes } from "./components/Routes";
 import { Header } from "./components/Header";
+import { WebSocketListener } from "./components/WebSocketListener";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +27,7 @@ function App() {
     <ReduxContext.Provider value={[store, dispatch]}>
       <QueryClientProvider client={queryClient}>
         <ReactNotification />
+        <WebSocketListener />
         <Router>
           <Header />
           <Layout className="layout">
