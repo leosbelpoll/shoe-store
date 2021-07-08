@@ -5,6 +5,7 @@ import { StoreDetails } from "./StoreDetails";
 import { ModelDetails } from "./ModelDetails";
 import { StoreList } from "./StoreList";
 import { ModelList } from "./ModelList";
+import { Search } from "./Search";
 
 export function Routes() {
   return (
@@ -23,6 +24,9 @@ export function Routes() {
       </Route>
       <Route path="/models/:id" exact>
         <ModelDetails />
+      </Route>
+      <Route path="/search" exact>
+        <Search />
       </Route>
       <Route path="*">
         <Error status={404} />
